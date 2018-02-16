@@ -1,0 +1,11 @@
+@mixin container() {
+  width: 1140px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+@mixin title() {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 400;
+  color: #3a3a3a;
+  font-size: 50px;
+}
