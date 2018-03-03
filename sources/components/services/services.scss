@@ -3,12 +3,12 @@
   position: relative;
   &__title {
     @include title();
-    padding: 85px 0;
+    padding: 0 0 85px;
     text-align: center;
   }
   &-container {
     @include container();
-    padding-bottom: 80px;
+    padding: 180px 0;
     opacity: 0;
     transition: opacity 0.5s ease-in;
   }
@@ -49,20 +49,30 @@
   align-items: center;
   position: fixed;
   width: 100%;
-  height: 100vh;
+  height: 0;
   background-color: rgba(0, 0, 0, 0.6);
   margin: 0 auto;
-  top:0;
+  bottom: 0;
   left: 0;
+  transition: height 0.5s cubic-bezier(0, 0, 1, 1);
   &-container {
     @include container();
     position: relative;
     background: #f9f9f9;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     box-shadow: 14px 20px 28px rgba(0,0,0,0.4),
-                -14px 20px 28px rgba(0,0,0,0.4)
+                -14px 20px 28px rgba(0,0,0,0.4);
+    animation: movePopupContainer 0.5s ease-in-out;
+  }
+  @keyframes movePopupContainer {
+    from {
+      top: -100%;
+    }
+    to {
+      top: 0;
+    }
   }
   &-content {
     height: 756px;
@@ -70,12 +80,12 @@
   &__title {
     @include title();
     text-align: center;
+    margin-top: 80px;
   }
   &__intro {
     margin: 40px;
-    text-align: center;
     line-height: 28px;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.4px;
     font-family: 'PT Sans', sans-serif;
   }
   &__arrow {
@@ -99,24 +109,26 @@
     right: 2%;
     color: grey;
     opacity: 0.5;
-    font-size: 40px;
-    &::before {
-      content: attr(data-icon);
-      font-family: foundation-icons;
-    }
+    font-size: 50px;
     &:hover {
       opacity: 1;
       cursor: pointer;
+    }
+    &>.material-icons {
+      font-size: 40px;
     }
   }
 }
 .popupnav {
   position: absolute;
-  left: 1%;
+  display: none;
+  left: 2%;
   top: 20%;
+  animation: movePopupNav 0.2s ease-in-out;
   &-list {
     list-style: none;
     text-align: center;
+    -webkit-padding-start: 0;
     &__item {
       margin-bottom: 10px;
       cursor: pointer;
@@ -126,7 +138,7 @@
       transition: .5s;
       box-sizing: border-box;
       &:hover {
-        transform: scale(1.2);
+        transform: scale(1.05);
         transition: .5s;
         box-sizing: border-box;
         box-shadow: 0 3px 17px black;
@@ -134,9 +146,22 @@
     }
   }
 }
-/*.arrow-icon--left {
-  font-size: 40px;
-}*/
+
+@keyframes movePopupNav {
+  from {
+    top: -20%;
+  }
+  to {
+    top: 20%;
+  }
+}
+
+@supports (-ms-ime-align:auto) {
+   .popup-container {
+     left: 5%;
+   }
+}
+
 
 
 

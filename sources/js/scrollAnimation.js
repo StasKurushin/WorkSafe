@@ -1,22 +1,25 @@
+//Animate blue-scroll-to-top button
+function animateBtn(scrollPos) {
+    scrollBtn.style.opacity = '1';
+    scrollBtn.style.transform = 'scale(2)'
+}
+
+//Animated appearance of Benefits container
+function animateBenefitsContainer(scrollPos) {
+    benefits.style.opacity = '1';
+}
+
+//Animate appearance of Services container
+function animateServicesContainer(scrollPos) {
+    servicesCont.style.opacity = '1'
+}
+
+//Animate module
 
     let lastScrollPos = 0;
     let scrollBtn = document.querySelector('.scroll-btn');
     let benefits = document.querySelector('.benefits');
     let servicesCont = document.querySelector('.services-container');
-
-    function animateBtn(scrollPos) {
-        scrollBtn.style.opacity = '1';
-        scrollBtn.style.transform = 'scale(2)'
-    }
-
-    function animateBenefitsContainer(scrollPos) {
-        benefits.style.opacity = '1';
-    }
-
-    function animateServicesContainer(scrollPos) {
-        servicesCont.style.opacity = '1'
-    }
-
 
     window.addEventListener('scroll', function (e) {
         lastScrollPos = window.scrollY;
@@ -35,7 +38,7 @@
         } else {
             benefits.style.opacity = '0';
         }
-        if (lastScrollPos > 1405) {
+        if (lastScrollPos > 1150) {
             window.requestAnimationFrame(function () {
                 animateServicesContainer(lastScrollPos);
             });
@@ -43,11 +46,10 @@
             servicesCont.style.opacity = '0';
         }
     });
-
-
+    // Smooth scroll event of blue-scroll-to-top button
     scrollBtn.addEventListener('click', function (el) {
         document.querySelector('.header').scrollIntoView({behavior: 'smooth'})
-    })
+    });
 
 
 

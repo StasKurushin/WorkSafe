@@ -1,342 +1,148 @@
-let navbar = document.querySelector('.header-navbar');
-
-function navbarOnload() {
-    navbar.style.transform = 'translateX(1272px)';
-    navbar.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)'
-}
-document.addEventListener("DOMContentLoaded", navbarOnload);
+//onload Header animation
+(function () {
+    let navbar = document.querySelector('.header-navbar');
+    let headerTitle = document.querySelector('.header-title');
+    window.onload = function () {
+        navbar.style.transform = 'translateX(1272px)';
+        navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';
+        //headerTitle.style.transform = 'translateX(1272px)';
+        //headerTitle.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
+        headerTitle.style.animation = 'headerTitleOnload .5s cubic-bezier(.84, 0, .47, 1)';
+        headerTitle.style.right = '0'
+    }
+})();
 const navbarListItem = document.querySelectorAll('.navbar-list__item');
-    [].forEach.call(navbarListItem, el => {
-        el.addEventListener('click', event => {
-            let target = event.target;
-            if (target.hasAttribute('data-scroll')) {
-                let dataAttr = target.getAttribute('data-scroll');
-                document.querySelector('.' + dataAttr).scrollIntoView({behavior: 'smooth'})
-            }
-        })
-})
+
+[].forEach.call(navbarListItem, el => {
+    el.addEventListener('click', event => {
+        let target = event.target;
+        if (target.hasAttribute('data-scroll')) {
+            let dataAttr = target.getAttribute('data-scroll');
+            document.querySelector('.' + dataAttr).scrollIntoView({behavior: 'smooth'})
+        }
+    })
+});
+
 
 
 const contentArr = [
     {
         title: 'Специальная оценка условий труда',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
+        intro: `<p>Согласно Федеральному закону от 28 декабря 2013 г. № 426-ФЗ «О специальной оценке условий труда» любое
+                   предприятие обязано организовать проведение специальной оценки условий труда.
+                </p>
+                <p>
+                    Штраф за нарушение порядка проведения СОУТ в 2018 году в соответствии со ст. 5.27.1 КоАП РФ составляет
+                    от 60 до 80 тысяч рублей на юридическое лицо.
+                </p>
+                <p>
+                    Наша компания поможет организовать процесс проведения специальной оценки условий труда с соблюдением 
+                    сроков, графиков и документарного обеспечения
+                </p>`
     },
     {
-        title: 'Организация мед. осмотров',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
-    },
-    {
-        title: 'Системы управления охраной труда',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
+        title: 'Знаки безопасности и сигнальная разметка',
+        intro: `<p>Для обеспечения безопасности на предприятии и предупреждения рисков получения травм сотрудниками обеспечивается
+                   обозначение мест с наибольшим риском при помощи знаков безопасности и сигнальной разметки по ГОСТ 12.4.026-2015 
+                   ЦВЕТА СИГНАЛЬНЫЕ, ЗНАКИ БЕЗОПАСНОСТИ И РАЗМЕТКА СИГНАЛЬНАЯ
+               </p>
+                <p>
+                    Мы поможем определить места и тип знаков под каждое предприятие, разработав проект и обеспечив поставку знаков
+               </p>`
     },
     {
         title: 'Аутсорсинг охраны труда',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
+        intro: `<ul>
+                    Согласно ст.212 Обязанности по обеспечению безопасных условий и охраны труда возлагаются на работодателя. Данную
+                    функцию можно возложить по договору на организацию, оказывающие услуги в области охраны труда. Основные 
+                    преимущества такого сотрудничества:
+                </ul>
+                <li>
+                    Значительное сокращение бюджета (в 2-3 раза) при организации охраны труда
+                </li>
+                <li>
+                Более качественное и своевременное оказание услуг за счет большого опыта работы с клиентами разного профиля и регулярного прохождения проверок надзорными органами</li>
+        
+        <li>
+        Регулярное отслеживание изменений законодательства и оказание методической помощи руководителям для поддержания организации охраны труда на высочайшем уровне
+        </li>
+        
+       <li>
+       Реальный контроль соблюдения требований законодательства на предприятии</li>
+        
+        
+        <ul>
+            В услуги аутсорсинга входит:
+        </ul>
+            <li>
+                осуществление функций специалиста по охране труда
+            </li>
+            <li>
+                организация и контроль за функционированием системы управления охраной труда
+            </li>
+            <li>
+                разработка полного пакета документов в соответствии со спецификой каждого предприятия
+            </li>
+            <li>
+                контроль за поддержанием документации в актуальном состоянии
+            </li>
+            <li>
+                рганизация медосмотров и психиатрических освидетельствований
+            </li>
+            <li>
+                организация и контроль за своевременным прохождением всех необходимых обучений
+            </li><li>
+                организация и выдача СИЗ для сотрудников
+            </li>
+            <li>
+                аудит и разработка мер по устранению выявленных нарушений требований охраны труда на предприятии для обеспечения безопасности сотрудников
+            </li>
+            <li>
+                представление интересов организации в надзорных органах и при взаимодействии с другими организациями
+            </li>`
     },
     {
         title: 'Аудит по охране труда',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
+        intro: `<p>Независимо от наличия штатного специалиста по охране труда для всех предприятий важна независимая 
+                    оценка действующей системы функционирования охраны труда на предприятии. Опытные специалисты 
+                    компании проведут качественный и полнейший аудит охраны труда на предприятии с учетом опыта 
+                    взаимодействия с клиентами различного профиля, действующего законодательства и прохождения 
+                    проверок надзорными органами.
+                </p>
+                    <ul>В услугу аудит входит:</ul>
+                    
+                    <li>аудит документации по охране труда</li>
+                    
+                    <li>аудит физических нарушений на предприятии</li>
+                    
+                    <li>составление отчета и рекомендаций по устранению нарушений</li>`
     },
     {
-        title: 'Документы по охране труда',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
+        title: 'Разработка документов по охране труда',
+        intro: `<p>Любая организация обязана иметь и вести определенную документацию по охране труда.</p>
+                <ul>В пакет документов входит:</ul>
+                <li>журналы по охране труда</li>
+                <li>приказы</li>
+                <li>перечни</li>
+                <li>положения</li>
+                <li>программы инструктажей</li>
+                <li>инструкции</li>
+                <li>программы обучения</li>
+                <li>карточки СИЗ</li>
+                <li>документы по обучению сотрудников</li>
+                <li>документы для прохождения медосмотров, психиатрических освидетельствований</li>
+                <li>И многое другое в зависимости от специфики предприятия</li>
+                <li>Данная услуга будет выполнена качественно и в срок опытными специалистами с инструкциями по работе с документами.</li>`
     },
+
     {
-        title: 'Декларация СОУТ',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
-    },
-    {
-        title: 'Расследование несчастных случаев',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
-    },
-    {
-        title: 'Возмещение средств из ФСС',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
-    },
-    {
-        title: 'Производственный контроль',
-        intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu felis a nibh consequat " +
-        "scelerisque eu id nibh. Donec gravida blandit erat. Fusce tempus scelerisque vehicula. " +
-        "Cras non neque vel eros tempus dignissim. Integer tincidunt aliquam neque eu lacinia. " +
-        "Nam vitae neque sit amet eros consequat varius. Pellentesque habitant morbi tristique" +
-        " senectus et netus et malesuada fames ac turpis egestas. Nullam lobortis sem lorem," +
-        " in hendrerit arcu vehicula sit amet. Duis interdum felis a rhoncus aliquam. Etiam in " +
-        "dolor eget ante interdum eleifend. Vestibulum ullamcorper porta nisi, porta euismod " +
-        "dolor vehicula id. Quisque efficitur quam eget diam aliquet ullamcorper quis sed mauris." +
-        " Ut tellus elit, tincidunt vitae ligula vitae, dapibus tincidunt odio. Morbi quis tortor" +
-        " commodo, ultricies ante non, feugiat tortor. Suspendisse nec nibh id ante auctor sodales " +
-        "sed nec elit. Vivamus semper, dui facilisis porta ornare, dui sem aliquet diam, sit amet " +
-        "pharetra velit eros sed quam. Sed elementum pretium ligula, eget imperdiet justo rutrum sed." +
-        " Nulla facilisi. Fusce vitae molestie mi, at vehicula lacus. Donec in varius ex, quis" +
-        "posuere neque. In magna eros, vehicula ac sapien eu, cursus dignissim magna. Nulla diam" +
-        " massa, accumsan ut faucibus sed, ultrices vitae est.Duis et euismod mauris. Proin fringilla " +
-        "vehicula felis id eleifend. Duis a ante velit. Suspendisse imperdiet malesuada libero laoreet " +
-        "auctor. Praesent id eros volutpat, molestie est non, euismod mi. Morbi porta dui mi, eget congue " +
-        "neque elementum dignissim. Curabitur convallis sem risus, et ultrices nisi malesuada sed.Pellentesque" +
-        " at auctor mi. Nulla maximus turpis id diam aliquet suscipit. Ut lacinia sit amet dui id posuere. Nulla" +
-        " et elementum nisi. Vivamus eget mi sed orci accumsan fermentum. Vivamus quam leo, hendrerit sed tortor ac, " +
-        "dictum gravida augue. Duis ornare mollis convallis. In hac habitasse platea dictumst.Maecenas orci diam, " +
-        "pulvinar vel eleifend at, egestas sed neque. Sed a elit pharetra dui vehicula consectetur. Morbi imperdiet" +
-        " ullamcorper convallis. In maximus quis est eget convallis. Nullam venenatis feugiat ligula, sit " +
-        "amet lobortis justo volutpat dictum. Integer consequat odio egestas ex iaculis, nec tincidunt neque laoreet." +
-        " In vitae mi consectetur, ullamcorper libero tincidunt, accumsan ex. Suspendisse feugiat vestibulum " +
-        "faucibus. Aliquam in aliquet sem, ut laoreet erat. Vestibulum ante ipsum primis in faucibus orci luctus " +
-        "et ultrices posuere cubilia Curae; Nunc posuere ultricies ligula at fermentum. Vestibulum velit urna," +
-        "volutpat iaculis sem in, tristique dignissim ante. Nam ut tellus eleifend, semper neque ac, pulvinar " +
-        "tortor. Cras sollicitudin ac risus ac tempus."
+        title: 'Разработка транспортных схем',
+        intro: `<p>согласно п. 4.2.5 Постановления Минтруда РФ
+                    от 12.05.2003 г. № 28
+                    «Об утверждении Межотраслевых правил по охране труда на автомобильном транспорте»
+                    Работодатель обязан разработать транспортную схему при движении любых видов техники по территории организации
+                    Специалисты нашей компании помогут разработать схемы движения под любое предприятие
+                </p>`
     }
 ];
 
@@ -348,11 +154,16 @@ const modalPopup = (function () {
     let popUpTitle;
     let popUpIntro;
     let navListItem;
+    let popup;
+    let popupContainer;
+    //let popupContentStyle;
+    let popupNavbar;
 
     function open(idx, target) {
         const templateStore = getTemplate(popupContent, idx);
         target.insertAdjacentHTML('beforeEnd', templateStore);
         activeItem = idx;
+        popupAnimation();
         addHandlers();
         setActiveItem(idx);
         document.body.style.overflow = 'hidden';
@@ -363,21 +174,41 @@ const modalPopup = (function () {
         document.querySelector('#left').addEventListener('click', _prevItem);
         document.querySelector('#right').addEventListener('click', _nextItem);
         document.querySelector('.popup__close').addEventListener('click', _close);
-        keyDownEvent();
         popUpTitle = document.querySelector('.popup__title');
         popUpIntro = document.querySelector('.popup__intro');
         navListItem = document.querySelectorAll('.popupnav-list__item');
         [].forEach.call(navListItem, (el, idx) => {
             el.addEventListener('click', event => setActiveItem(idx))
-        })
+        });
+        keyDownEvent();
     }
-    
+
     function _prevItem() {
-        setActiveItem(activeItem > 0 ? activeItem - 1 : contentArr.length - 1);
+        setActiveItem(activeItem > 0 ? activeItem - 1 : popupContent.length - 1);
     }
 
     function _nextItem() {
-        setActiveItem(activeItem < contentArr.length - 1 ? activeItem + 1 : 0);
+        setActiveItem(activeItem < popupContent.length - 1 ? activeItem + 1 : 0);
+    }
+
+    function setActiveItem(idx) {
+        popUpTitle.innerHTML =  popupContent[idx].title;
+        popUpIntro.innerHTML =  popupContent[idx].intro;
+        _setNavListItem(idx);
+        activeItem = idx;
+    }
+
+    function _setNavListItem(idx) {
+        navListItem[activeItem].style.background = 'none';
+        navListItem[idx].style.background = "rgba(49, 196, 189, 0.44)"
+    }
+    function _close() {
+        document.querySelector('#popup').remove();
+        document.body.style.overflow = '';
+    }
+
+    function init(content) {
+        popupContent = content;
     }
 
     function keyDownEvent() {
@@ -391,25 +222,39 @@ const modalPopup = (function () {
             }
         })
     }
-    
-    function setActiveItem(idx) {
-        popUpTitle.innerHTML = contentArr[idx].title;
-        popUpIntro.innerHTML = contentArr[idx].intro;
-        _setNavListItem(idx);
-        activeItem = idx;
+
+    function popupAnimation() {
+        growPopup();
+        popupContentAppear()
+    }
+
+    function growPopup() {
+        popup = document.querySelector('.popup');
+        let height = 0;
+        //popup.style.height = height + 'vh';
+        let tId = setTimeout(function tick() {
+            height += 10;
+            popup.style.height = height + 'vh';
+            if (height < 100) {
+                let tId = setTimeout(tick, 1);
+            } else {
+                popup.style.height = '100vh';
+            }
+        }, 1);
     }
     
-    function _setNavListItem(idx) {
-        navListItem[activeItem].style.background = 'none';
-        navListItem[idx].style.background = "rgba(49, 196, 189, 0.44)"
-    }
-    function _close() {
-        document.querySelector('#popup').remove();
-        document.body.style.overflow = '';
-    }
-    
-    function init(content) {
-        popupContent = content;
+    function popupContentAppear() {
+        popupContainer = document.querySelector('.popup-container');
+        //popupContentStyle = document.querySelector('.popup-content');
+        popupNavbar = document.querySelector('.popupnav');
+        setTimeout (function() {
+            popupContainer.style.display = 'flex';
+            //popupContentStyle.style.height ='756px';
+        }, 600);
+        setTimeout(function() {
+            popupNavbar.style.display = 'block';
+        },1000)
+
     }
 
     function getTemplate(arr, idx) {
@@ -439,12 +284,13 @@ const modalPopup = (function () {
                                     <div class="popup__arrow" id="right">
                                         <i class="material-icons">chevron_right</i>
                                     </div>
-                                    <div class="popup__close" data-icon="&#xf216" id="close">
-                                                                        
+                                    <div class="popup__close" id="close">
+                                            <i class="material-icons material-icons__close">clear</i>                            
                                     </div>
                                 </div>
                          </div>`
     }
+
     return {openModal: open,
             addContent: init}
 })();
@@ -462,25 +308,28 @@ modalPopup.addContent(content);
 
 
 
+//Animate blue-scroll-to-top button
+function animateBtn(scrollPos) {
+    scrollBtn.style.opacity = '1';
+    scrollBtn.style.transform = 'scale(2)'
+}
+
+//Animated appearance of Benefits container
+function animateBenefitsContainer(scrollPos) {
+    benefits.style.opacity = '1';
+}
+
+//Animate appearance of Services container
+function animateServicesContainer(scrollPos) {
+    servicesCont.style.opacity = '1'
+}
+
+//Animate module
 
     let lastScrollPos = 0;
     let scrollBtn = document.querySelector('.scroll-btn');
     let benefits = document.querySelector('.benefits');
     let servicesCont = document.querySelector('.services-container');
-
-    function animateBtn(scrollPos) {
-        scrollBtn.style.opacity = '1';
-        scrollBtn.style.transform = 'scale(2)'
-    }
-
-    function animateBenefitsContainer(scrollPos) {
-        benefits.style.opacity = '1';
-    }
-
-    function animateServicesContainer(scrollPos) {
-        servicesCont.style.opacity = '1'
-    }
-
 
     window.addEventListener('scroll', function (e) {
         lastScrollPos = window.scrollY;
@@ -499,7 +348,7 @@ modalPopup.addContent(content);
         } else {
             benefits.style.opacity = '0';
         }
-        if (lastScrollPos > 1405) {
+        if (lastScrollPos > 1150) {
             window.requestAnimationFrame(function () {
                 animateServicesContainer(lastScrollPos);
             });
@@ -507,11 +356,10 @@ modalPopup.addContent(content);
             servicesCont.style.opacity = '0';
         }
     });
-
-
+    // Smooth scroll event of blue-scroll-to-top button
     scrollBtn.addEventListener('click', function (el) {
         document.querySelector('.header').scrollIntoView({behavior: 'smooth'})
-    })
+    });
 
 
 

@@ -12,7 +12,10 @@
     height: 100%;
   }
   &-title {
+    position: relative;
     margin: 70px 0 150px;
+    right: -133%;
+    top:0;
     &__item {
       font-family: 'Montserrat', sans-serif;
       font-size: 170px;
@@ -25,7 +28,6 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    max-width: 100%;
   }
 }
 .navbar {
@@ -46,6 +48,17 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+@keyframes headerTitleOnload {
+  from {
+    top:0;
+    right: -133%
+  }
+  to {
+    top:0;
+    right: 0
   }
 }
 .author-link {
