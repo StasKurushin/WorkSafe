@@ -1,0 +1,25 @@
+.clients {
+  &-container {
+    @include container();
+    position: relative;
+    height: 100%;
+
+  }
+  &-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 60px 0 100px;
+  }
+  &__title {
+    @include title();
+    text-align: center;
+  }
+}
+.client {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 50px 0 0;
+
+}

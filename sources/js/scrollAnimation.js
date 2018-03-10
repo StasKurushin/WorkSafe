@@ -1,5 +1,6 @@
 //Animate blue-scroll-to-top button
 function animateBtn(scrollPos) {
+    scrollBtn.style.display = 'flex';
     scrollBtn.style.opacity = '1';
     scrollBtn.style.transform = 'scale(2)'
 }
@@ -15,7 +16,6 @@ function animateServicesContainer(scrollPos) {
 }
 
 //Animate module
-
     let lastScrollPos = 0;
     let scrollBtn = document.querySelector('.scroll-btn');
     let benefits = document.querySelector('.benefits');

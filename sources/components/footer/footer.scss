@@ -12,6 +12,17 @@
     color: #b3b3b3;
   }
 }
+.author-link {
+  background-color:black;
+  color:white;
+  text-decoration:none;
+  padding:4px 6px;
+  font-size:12px;
+  font-weight:bold;
+  line-height:1.2;
+  display:inline-block;
+  border-radius:3px;
+}
 
 .scroll-btn{
   opacity: 0;
@@ -27,7 +38,7 @@
   border-radius: 50%;
   width: 10px;
   height: 10px;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   cursor: pointer;

@@ -1,13 +1,22 @@
 //onload Header animation
+
 (function () {
-    let navbar = document.querySelector('.header-navbar');
-    let headerTitle = document.querySelector('.header-title');
+    let navbar = document.querySelector('.navbar-list');
+    let headerTitle = document.querySelector('.header__title');
     window.onload = function () {
-        navbar.style.transform = 'translateX(1272px)';
-        navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';
-        //headerTitle.style.transform = 'translateX(1272px)';
-        //headerTitle.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
-        headerTitle.style.animation = 'headerTitleOnload .5s cubic-bezier(.84, 0, .47, 1)';
-        headerTitle.style.right = '0'
+       if (document.documentElement.clientWidth > 1240)
+        {
+            navbar.style.left = '0%';
+            navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';
+            headerTitle.style.right = '0%';
+            headerTitle.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
+            setTimeout(function () {
+                navbar.style.position= 'static';
+                headerTitle.style.position = 'static';
+            }, 700)
+        } else {
+           navbar.style.position= 'static';
+           headerTitle.style.position = 'static';
+       }
     }
 })();

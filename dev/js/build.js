@@ -1,16 +1,35 @@
 //onload Header animation
+
 (function () {
-    let navbar = document.querySelector('.header-navbar');
-    let headerTitle = document.querySelector('.header-title');
+    let navbar = document.querySelector('.navbar-list');
+    let headerTitle = document.querySelector('.header__title');
     window.onload = function () {
-        navbar.style.transform = 'translateX(1272px)';
-        navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';
-        //headerTitle.style.transform = 'translateX(1272px)';
-        //headerTitle.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
-        headerTitle.style.animation = 'headerTitleOnload .5s cubic-bezier(.84, 0, .47, 1)';
-        headerTitle.style.right = '0'
+       if (document.documentElement.clientWidth > 1240)
+        {
+            navbar.style.left = '0%';
+            navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';
+            headerTitle.style.right = '0%';
+            headerTitle.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
+            setTimeout(function () {
+                navbar.style.position= 'static';
+                headerTitle.style.position = 'static';
+            }, 700)
+        } else {
+           navbar.style.position= 'static';
+           headerTitle.style.position = 'static';
+       }
     }
 })();
+
+
+/*(function () {
+    //let navbar = document.querySelector('.header-navbar');
+    let clientWidth = document.documentElement.clientWidth;
+    function navbarMedia() {
+       console.log(clientWidth)
+    }
+})();*/
+
 const navbarListItem = document.querySelectorAll('.navbar-list__item');
 
 [].forEach.call(navbarListItem, el => {
@@ -52,54 +71,56 @@ const contentArr = [
     },
     {
         title: 'Аутсорсинг охраны труда',
-        intro: `<ul>
+        intro: `<p>
                     Согласно ст.212 Обязанности по обеспечению безопасных условий и охраны труда возлагаются на работодателя. Данную
                     функцию можно возложить по договору на организацию, оказывающие услуги в области охраны труда. Основные 
                     преимущества такого сотрудничества:
-                </ul>
+                </p>
+                <ul>
                 <li>
-                    Значительное сокращение бюджета (в 2-3 раза) при организации охраны труда
-                </li>
-                <li>
-                Более качественное и своевременное оказание услуг за счет большого опыта работы с клиентами разного профиля и регулярного прохождения проверок надзорными органами</li>
-        
-        <li>
-        Регулярное отслеживание изменений законодательства и оказание методической помощи руководителям для поддержания организации охраны труда на высочайшем уровне
-        </li>
-        
-       <li>
-       Реальный контроль соблюдения требований законодательства на предприятии</li>
-        
-        
-        <ul>
-            В услуги аутсорсинга входит:
-        </ul>
-            <li>
-                осуществление функций специалиста по охране труда
-            </li>
-            <li>
-                организация и контроль за функционированием системы управления охраной труда
-            </li>
-            <li>
-                разработка полного пакета документов в соответствии со спецификой каждого предприятия
-            </li>
-            <li>
-                контроль за поддержанием документации в актуальном состоянии
-            </li>
-            <li>
-                рганизация медосмотров и психиатрических освидетельствований
-            </li>
-            <li>
-                организация и контроль за своевременным прохождением всех необходимых обучений
-            </li><li>
-                организация и выдача СИЗ для сотрудников
-            </li>
-            <li>
-                аудит и разработка мер по устранению выявленных нарушений требований охраны труда на предприятии для обеспечения безопасности сотрудников
-            </li>
-            <li>
-                представление интересов организации в надзорных органах и при взаимодействии с другими организациями
-            </li>`
+                                    Значительное сокращение бюджета (в 2-3 раза) при организации охраны труда
+                                </li>
+                                <li>
+                                Более качественное и своевременное оказание услуг за счет большого опыта работы с клиентами разного профиля и регулярного прохождения проверок надзорными органами</li>
+                        
+                        <li>
+                        Регулярное отслеживание изменений законодательства и оказание методической помощи руководителям для поддержания организации охраны труда на высочайшем уровне
+                        </li>
+                        
+                       <li>
+                       Реальный контроль соблюдения требований законодательства на предприятии</li>
+                        
+                        
+                        <ul>
+                            В услуги аутсорсинга входит:
+                        </ul>
+                            <li>
+                                осуществление функций специалиста по охране труда
+                            </li>
+                            <li>
+                                организация и контроль за функционированием системы управления охраной труда
+                            </li>
+                            <li>
+                                разработка полного пакета документов в соответствии со спецификой каждого предприятия
+                            </li>
+                            <li>
+                                контроль за поддержанием документации в актуальном состоянии
+                            </li>
+                            <li>
+                                рганизация медосмотров и психиатрических освидетельствований
+                            </li>
+                            <li>
+                                организация и контроль за своевременным прохождением всех необходимых обучений
+                            </li><li>
+                                организация и выдача СИЗ для сотрудников
+                            </li>
+                            <li>
+                                аудит и разработка мер по устранению выявленных нарушений требований охраны труда на предприятии для обеспечения безопасности сотрудников
+                            </li>
+                            <li>
+                                представление интересов организации в надзорных органах и при взаимодействии с другими организациями
+                            </li>
+                       </ul>`
     },
     {
         title: 'Аудит по охране труда',
@@ -109,30 +130,34 @@ const contentArr = [
                     взаимодействия с клиентами различного профиля, действующего законодательства и прохождения 
                     проверок надзорными органами.
                 </p>
-                    <ul>В услугу аудит входит:</ul>
+                <p>В услугу аудит входит:</p>
                     
+                <ul>
                     <li>аудит документации по охране труда</li>
-                    
+                                        
                     <li>аудит физических нарушений на предприятии</li>
                     
-                    <li>составление отчета и рекомендаций по устранению нарушений</li>`
+                    <li>составление отчета и рекомендаций по устранению нарушений</li>
+                </ul>`
     },
     {
         title: 'Разработка документов по охране труда',
         intro: `<p>Любая организация обязана иметь и вести определенную документацию по охране труда.</p>
-                <ul>В пакет документов входит:</ul>
-                <li>журналы по охране труда</li>
-                <li>приказы</li>
-                <li>перечни</li>
-                <li>положения</li>
-                <li>программы инструктажей</li>
-                <li>инструкции</li>
-                <li>программы обучения</li>
-                <li>карточки СИЗ</li>
-                <li>документы по обучению сотрудников</li>
-                <li>документы для прохождения медосмотров, психиатрических освидетельствований</li>
-                <li>И многое другое в зависимости от специфики предприятия</li>
-                <li>Данная услуга будет выполнена качественно и в срок опытными специалистами с инструкциями по работе с документами.</li>`
+                <p>В пакет документов входит:</p>
+                <ul>
+                    <li>журналы по охране труда</li>
+                    <li>приказы</li>
+                    <li>перечни</li>
+                    <li>положения</li>
+                    <li>программы инструктажей</li>
+                    <li>инструкции</li>
+                    <li>программы обучения</li>
+                    <li>карточки СИЗ</li>
+                    <li>документы по обучению сотрудников</li>
+                    <li>документы для прохождения медосмотров, психиатрических освидетельствований</li>
+                    <li>И многое другое в зависимости от специфики предприятия</li>
+                    <li>Данная услуга будет выполнена качественно и в срок опытными специалистами с инструкциями по работе с документами.</li>
+                </ul>`
     },
 
     {
@@ -155,32 +180,36 @@ const modalPopup = (function () {
     let popUpIntro;
     let navListItem;
     let popup;
-    let popupContainer;
+    let popupSlideinContent;
     //let popupContentStyle;
     let popupNavbar;
 
+
+
     function open(idx, target) {
+        document.documentElement.style.overflow = 'hidden';
+        scrollBtn.style.display = 'none';
+        activeItem = idx;
         const templateStore = getTemplate(popupContent, idx);
         target.insertAdjacentHTML('beforeEnd', templateStore);
-        activeItem = idx;
         popupAnimation();
         addHandlers();
         setActiveItem(idx);
-        document.body.style.overflow = 'hidden';
-        document.querySelector('.popup-container').style.overflow = 'auto'
+        //document.querySelector('.popup-content').style.overflow = 'auto'
     }
 
     function addHandlers() {
         document.querySelector('#left').addEventListener('click', _prevItem);
         document.querySelector('#right').addEventListener('click', _nextItem);
         document.querySelector('.popup__close').addEventListener('click', _close);
+
+        document.body.addEventListener('keydown', keyHandler);
         popUpTitle = document.querySelector('.popup__title');
         popUpIntro = document.querySelector('.popup__intro');
         navListItem = document.querySelectorAll('.popupnav-list__item');
         [].forEach.call(navListItem, (el, idx) => {
             el.addEventListener('click', event => setActiveItem(idx))
         });
-        keyDownEvent();
     }
 
     function _prevItem() {
@@ -195,43 +224,47 @@ const modalPopup = (function () {
         popUpTitle.innerHTML =  popupContent[idx].title;
         popUpIntro.innerHTML =  popupContent[idx].intro;
         _setNavListItem(idx);
-        activeItem = idx;
     }
 
     function _setNavListItem(idx) {
         navListItem[activeItem].style.background = 'none';
-        navListItem[idx].style.background = "rgba(49, 196, 189, 0.44)"
+        navListItem[idx].style.background = "rgba(49, 196, 189, 0.44)";
+        activeItem = idx;
     }
+
     function _close() {
         document.querySelector('#popup').remove();
-        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        scrollBtn.style.display = 'flex';
+        document.body.removeEventListener('keydown', keyHandler)
     }
 
     function init(content) {
         popupContent = content;
     }
 
-    function keyDownEvent() {
-        document.body.addEventListener('keydown', event => {
-            if (event.key === 'ArrowLeft') {
-               _prevItem()
-            } else if (event.key === 'ArrowRight') {
-                _nextItem()
-            } else if (event.key === 'Escape') {
-                _close()
-            }
-        })
+    function keyHandler () {
+        if (event.key === 'ArrowLeft') {
+            _prevItem()
+        } else if (event.key === 'ArrowRight') {
+            _nextItem()
+        } else if (event.key === 'Escape') {
+            _close()
+        }
     }
 
     function popupAnimation() {
-        growPopup();
-        popupContentAppear()
+        popup = document.querySelector('.popup');
+        popupSlideinContent = document.querySelector('.popup-content');
+        popupNavbar = document.querySelector('.popupnav');
+        window.requestAnimationFrame(function () {
+            growPopup();
+            popupContentAppear();
+        })
     }
 
     function growPopup() {
-        popup = document.querySelector('.popup');
         let height = 0;
-        //popup.style.height = height + 'vh';
         let tId = setTimeout(function tick() {
             height += 10;
             popup.style.height = height + 'vh';
@@ -244,17 +277,15 @@ const modalPopup = (function () {
     }
     
     function popupContentAppear() {
-        popupContainer = document.querySelector('.popup-container');
-        //popupContentStyle = document.querySelector('.popup-content');
-        popupNavbar = document.querySelector('.popupnav');
         setTimeout (function() {
-            popupContainer.style.display = 'flex';
-            //popupContentStyle.style.height ='756px';
-        }, 600);
-        setTimeout(function() {
+            popupSlideinContent.style.display = 'flex';
             popupNavbar.style.display = 'block';
-        },1000)
-
+            document.querySelector('#left').style.display = "block";
+            document.querySelector('#right').style.display = "block";
+        }, 600);
+        /*setTimeout(function() {
+            popupNavbar.style.display = 'block';
+        },1000)*/
     }
 
     function getTemplate(arr, idx) {
@@ -269,28 +300,27 @@ const modalPopup = (function () {
                                         ${res}
                                     </ul>
                                 </div>
-                                <div class="popup-container">
-                                    <div class="popup__arrow" id="left">
-                                        <i class="material-icons">chevron_left</i>
-                                    </div>
-                                    <div class="popup-content">
-                                        <div class="popup__title" id="title">
-                                          ${title}
-                                        </div>
-                                        <div class="popup__intro" id="intro">
-                                            ${intro}
-                                        </div>
-                                    </div>   
-                                    <div class="popup__arrow" id="right">
-                                        <i class="material-icons">chevron_right</i>
-                                    </div>
-                                    <div class="popup__close" id="close">
-                                            <i class="material-icons material-icons__close">clear</i>                            
-                                    </div>
+                                <div class="popup__arrow" id="left">
+                                    <i class="material-icons">chevron_left</i>
                                 </div>
+                                <!--<div class="popup-container">-->
+                                <div class="popup-content">
+                                    <h2 class="popup__title" id="title">
+                                      ${title}
+                                    </h2>
+                                    <div class="popup__intro" id="intro">
+                                        ${intro}
+                                    </div>
+                                </div>  
+                                <div class="popup__arrow" id="right">
+                                    <i class="material-icons">chevron_right</i>
+                                </div> 
+                                <div class="popup__close" id="close">
+                                        <i class="material-icons material-icons__close">clear</i>                            
+                                </div>
+                               <!-- </div>-->
                          </div>`
     }
-
     return {openModal: open,
             addContent: init}
 })();
@@ -308,8 +338,34 @@ modalPopup.addContent(content);
 
 
 
+(function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+            || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+                timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+}());
+
 //Animate blue-scroll-to-top button
 function animateBtn(scrollPos) {
+    scrollBtn.style.display = 'flex';
     scrollBtn.style.opacity = '1';
     scrollBtn.style.transform = 'scale(2)'
 }
@@ -325,7 +381,6 @@ function animateServicesContainer(scrollPos) {
 }
 
 //Animate module
-
     let lastScrollPos = 0;
     let scrollBtn = document.querySelector('.scroll-btn');
     let benefits = document.querySelector('.benefits');

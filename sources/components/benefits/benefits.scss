@@ -52,6 +52,26 @@
   }
 }
 
+@media (min-width: 2560px) {
+  .benefits {
+    &-container {
+      width: 1610px;
+    }
+    &__title {
+      font-size: 60px;
+      margin-top: 185px;
+    }
+    &-items {
+      margin: 170px 0;
+    }
+  }
+  .benefit {
+    &__intro {
+      width: 279px;
+      font-size: 22px;
+    }
+  }
 
+}
 
 

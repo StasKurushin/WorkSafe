@@ -1,15 +1,14 @@
 .services {
   background-color: #f4f6f7;
-  position: relative;
   &__title {
     @include title();
-    padding: 0 0 85px;
+    margin-bottom: 85px;
     text-align: center;
   }
   &-container {
     @include container();
     padding: 180px 0;
-    opacity: 0;
+    //opacity: 0;
     transition: opacity 0.5s ease-in;
   }
   &-block {
@@ -38,7 +37,7 @@
     color: #6b6b6b;
     text-align: center;
     font-family: 'PT Sans', sans-serif;
-    font-size: 30px;
+    font-size: 29px;
     padding: 15px;
   }
 }
@@ -55,27 +54,55 @@
   bottom: 0;
   left: 0;
   transition: height 0.5s cubic-bezier(0, 0, 1, 1);
-  &-container {
-    @include container();
+  z-index: 1;
+  &-content {
+    height: 756px;
     position: relative;
+    //top: -100%;
     background: #f9f9f9;
     display: none;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     box-shadow: 14px 20px 28px rgba(0,0,0,0.4),
                 -14px 20px 28px rgba(0,0,0,0.4);
-    animation: movePopupContainer 0.5s ease-in-out;
-  }
-  @keyframes movePopupContainer {
-    from {
-      top: -100%;
+    animation: slideinPopupContent 0.4s ease-in-out;
+    -moz-animation: slideinPopupContent 1.3s ease-in-out;
+    overflow: auto;
+    width: 1000px;
+    max-width: 100%;
+    border-radius: 2%;
+    @keyframes slideinPopupContent {
+      from {
+        top: -100%;
+      }
+      to {
+        top: 0;
+      }
     }
-    to {
-      top: 0;
+    @-moz-keyframes slideinPopupContent {
+      from {
+        top: -100%;
+      }
+      to {
+        top: 0;
+      }
     }
-  }
-  &-content {
-    height: 756px;
+    &::-webkit-scrollbar {
+      width: 10px;
+      background-color: #F5F5F5;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.8);
+      background-color: #F5F5F5;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: #afafaf;
+      box-shadow: inset 0 0 5px 3px rgba(0,0,0,0.4)
+    }
   }
   &__title {
     @include title();
@@ -89,12 +116,33 @@
     font-family: 'PT Sans', sans-serif;
   }
   &__arrow {
+    display: none;
+    position: relative;
     font-weight: 800;
-    color: grey;
+    color: white;
     opacity: 0.5;
     font-size: 60px;
     margin: 0 20px;
     font-family: 'PT Sans', sans-serif;
+    animation: slideinArrow 1s ease-in-out;
+    -moz-animation: slideinArrow 1.7s ease-in-out; ;
+    @keyframes slideinArrow {
+      from {
+        top: -100%;
+      }
+      to {
+        top: 0;
+      }
+    }
+    @-moz-keyframes slideinArrow {
+      from {
+        top: -100%;
+      }
+      to {
+        top: 0;
+      }
+    }
+
     &:hover {
       opacity: 1;
       cursor: pointer;
@@ -120,15 +168,38 @@
   }
 }
 .popupnav {
-  position: absolute;
+  padding: 10px;
+  position: relative;
   display: none;
-  left: 2%;
-  top: 20%;
-  animation: movePopupNav 0.2s ease-in-out;
+  top: -20%;
+  background: #666666;
+  border: 0.5px solid transparent;
+  border-radius: 9px;
+  animation: slideinPopupNav 0.7s ease-in-out;
+  -moz-animation: slideinPopupNav 1.6s ease-in-out;
+  box-shadow: 14px 20px 28px rgba(0, 0, 0, 0.4),
+              -14px 20px 28px rgba(0, 0, 0, 0.4);
+  @keyframes slideinPopupNav {
+    from {
+      top: -100%;
+    }
+    to {
+      top: -20%;
+    }
+  }
+  @-moz-keyframes slideinPopupNav {
+    from {
+      top: -100%;
+    }
+    to {
+      top: -20%;
+    }
+  }
   &-list {
     list-style: none;
     text-align: center;
     -webkit-padding-start: 0;
+    -moz-padding-start: 0;
     &__item {
       margin-bottom: 10px;
       cursor: pointer;
@@ -136,32 +207,44 @@
       font-family: 'PT Sans', sans-serif;
       border-radius: 4px;
       transition: .5s;
-      box-sizing: border-box;
       &:hover {
         transform: scale(1.05);
-        transition: .5s;
-        box-sizing: border-box;
         box-shadow: 0 3px 17px black;
       }
     }
   }
 }
 
-@keyframes movePopupNav {
-  from {
-    top: -20%;
-  }
-  to {
-    top: 20%;
-  }
-}
 
-@supports (-ms-ime-align:auto) {
+
+/*@supports (-ms-ime-align:auto) {
    .popup-container {
      left: 5%;
    }
-}
+}*/
 
+@media (min-width: 2560px) {
+  .services {
+    &-container {
+      width: 1610px;
+    }
+    &__title {
+      font-size: 60px;
+      margin-bottom: 160px;
+    }
+  }
+  .service {
+    width: 398px;
+    border: 3px solid rgb(49, 196, 189);
+    &:hover {
+      box-shadow: inset 398px 0 0 0 rgba(49, 196, 189, 0.44);
+    }
+    &__title {
+      font-size: 36px;
+      padding: 36px;
+    }
+  }
+}
 
 
 
