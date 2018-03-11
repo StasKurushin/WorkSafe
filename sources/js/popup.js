@@ -237,9 +237,6 @@ const modalPopup = (function () {
             document.querySelector('#left').style.display = "block";
             document.querySelector('#right').style.display = "block";
         }, 600);
-        /*setTimeout(function() {
-            popupNavbar.style.display = 'block';
-        },1000)*/
     }
 
     function getTemplate(arr, idx) {

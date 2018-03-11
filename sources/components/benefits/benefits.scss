@@ -9,13 +9,10 @@
   }
   &__title {
     @include title();
-    margin-top: 125px;
-    text-align: center;
   }
   &-items {
     display: flex;
     flex-wrap: wrap;
-    margin: 95px 0;
     justify-content: space-around;
   }
 }
@@ -55,14 +52,10 @@
 @media (min-width: 2560px) {
   .benefits {
     &-container {
-      width: 1610px;
+      @include containerBigSreen();
     }
     &__title {
-      font-size: 60px;
-      margin-top: 185px;
-    }
-    &-items {
-      margin: 170px 0;
+      @include titleBigScreen()
     }
   }
   .benefit {

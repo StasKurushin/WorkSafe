@@ -25,6 +25,7 @@ body {
   height: 100vh;
   &-container {
     @include container();
+    padding: 0 15px;
     height: 100%;
     display: flex;
     justify-content: space-around;
@@ -39,7 +40,10 @@ body {
     margin: 0 auto;
     font-family: 'Montserrat', sans-serif;
     font-size: 170px;
+    //font-size: calcFluidFontSize(50, 220, 320, 2560);
     color: white;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
   }
 }
 .navbar {
@@ -106,11 +110,17 @@ body {
       width: 1610px;
     }
     &__title {
-      font-size: 220px;
+      font-size: 220px
     }
   }
-  .navbar-list {
-    transform: scale(1.5);
+  .navbar {
+    //transform: scale(1.5);
+    &-list {
+      padding: 40px;
+      &__item {
+        font-size: 40px;
+      }
+    }
   }
   .mouse {
     width: 45px;

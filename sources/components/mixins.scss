@@ -1,5 +1,5 @@
 @mixin container() {
-  padding: 0 15px;
+  padding: 135px 15px;
   width: 1140px;
   max-width: 100%;
   margin: 0 auto;
@@ -9,5 +9,22 @@
   font-weight: 400;
   color: #3a3a3a;
   font-size: 50px;
+  text-align: center;
+  margin-bottom: 125px;
 }
 
+@mixin containerBigSreen {
+  padding: 200px 15px;
+  width: 1610px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@mixin titleBigScreen() {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 400;
+  color: #3a3a3a;
+  font-size: 60px;
+  text-align: center;
+  margin-bottom: 185px;
+}

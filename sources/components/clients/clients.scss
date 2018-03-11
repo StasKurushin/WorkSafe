@@ -1,19 +1,14 @@
 .clients {
+  &__title {
+    @include title();
+  }
   &-container {
     @include container();
-    position: relative;
-    height: 100%;
-
   }
   &-block {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 60px 0 100px;
-  }
-  &__title {
-    @include title();
-    text-align: center;
   }
 }
 .client {
@@ -22,4 +17,25 @@
   align-items: center;
   margin: 40px 50px 0 0;
 
+}
+
+//for big screen
+@media (min-width: 2560px) {
+  .clients {
+    &__title {
+      @include titleBigScreen()
+      margin-bottom: 145px;
+    }
+    &-container {
+      @include containerBigSreen()
+    }
+  }
+  #eco {
+    width: 170px;
+  }
+  .client {
+    &-img {
+      width: 360px;
+    }
+  }
 }
