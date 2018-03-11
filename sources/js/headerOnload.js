@@ -4,7 +4,7 @@
     let navbar = document.querySelector('.navbar-list');
     let headerTitle = document.querySelector('.header__title');
     window.onload = function () {
-       if (document.documentElement.clientWidth > 1240)
+       if (document.documentElement.clientWidth > 767)
         {
             navbar.style.left = '0%';
             navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';

@@ -1,10 +1,47 @@
+/*
+let el = document.querySelector('.navbar-list');
+
+
+let scrollFloat = function() {
+    'use strict';
+
+    let app = {};
+
+    app.init = function init(node) {
+        if (!node || node.nodeType !== 1) {
+            throw new Error(node + ' is not DOM element');
+        }
+        handleWindowScroll(node);
+    };
+
+    function handleWindowScroll(floatElement) {
+        window.onscroll = function() {
+            if (window.scrollY > floatElement.offsetTop) {
+                if (floatElement.style.position !== 'fixed') {
+                    floatElement.style.position = 'fixed';
+                    floatElement.style.top = '0';
+                }
+            } else {
+                if (floatElement.style.position === 'fixed') {
+                    floatElement.style.position = '';
+                    floatElement.style.top = '';
+                }
+            }
+        };
+    }
+
+    return app;
+}();
+
+scrollFloat.init(el);*/
+
 //onload Header animation
 
 (function () {
     let navbar = document.querySelector('.navbar-list');
     let headerTitle = document.querySelector('.header__title');
     window.onload = function () {
-       if (document.documentElement.clientWidth > 1240)
+       if (document.documentElement.clientWidth > 767)
         {
             navbar.style.left = '0%';
             navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';
@@ -29,6 +66,13 @@
        console.log(clientWidth)
     }
 })();*/
+
+/*
+let x = document.documentElement.clientWidth;
+let y = document.querySelector('.header__title');
+
+y.style.fontSize = Math.floor(x / 11) + 'px';
+console.log(y);*/
 
 const navbarListItem = document.querySelectorAll('.navbar-list__item');
 
@@ -361,53 +405,56 @@ modalPopup.addContent(content);
 }());
 
 //Animate blue-scroll-to-top button
-function animateBtn(scrollPos) {
+function animateBtn() {
     scrollBtn.style.display = 'flex';
     scrollBtn.style.opacity = '1';
     scrollBtn.style.transform = 'scale(2)'
 }
 
 //Animated appearance of Benefits container
-function animateBenefitsContainer(scrollPos) {
+function animateBenefitsContainer() {
     benefits.style.opacity = '1';
 }
 
 //Animate appearance of Services container
-function animateServicesContainer(scrollPos) {
+function animateServicesContainer() {
     servicesCont.style.opacity = '1'
 }
+
 
 //Animate module
     let lastScrollPos = 0;
     let scrollBtn = document.querySelector('.scroll-btn');
     let benefits = document.querySelector('.benefits');
     let servicesCont = document.querySelector('.services-container');
+    let navbarList = document.querySelector('.navbar-list');
 
     window.addEventListener('scroll', function (e) {
         lastScrollPos = window.scrollY;
         if (lastScrollPos > 500) {
             window.requestAnimationFrame(function () {
-                animateBtn(lastScrollPos);
-            });
+                animateBtn();
+            })
         } else {
             scrollBtn.style.opacity = '0';
             scrollBtn.style.transform = 'scale(0.5)'
         }
         if (lastScrollPos > 400) {
             window.requestAnimationFrame(function () {
-                animateBenefitsContainer(lastScrollPos);
-            });
+                animateBenefitsContainer();
+            })
         } else {
             benefits.style.opacity = '0';
         }
         if (lastScrollPos > 1150) {
             window.requestAnimationFrame(function () {
-                animateServicesContainer(lastScrollPos);
-            });
+                animateServicesContainer();
+            })
         } else {
             servicesCont.style.opacity = '0';
         }
     });
+
     // Smooth scroll event of blue-scroll-to-top button
     scrollBtn.addEventListener('click', function (el) {
         document.querySelector('.header').scrollIntoView({behavior: 'smooth'})

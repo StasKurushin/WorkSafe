@@ -3,9 +3,7 @@
   transition: opacity 0.5s ease-in;
   &-container {
     @include container();
-    display: flex;
     justify-content: center;
-    flex-direction: column;
   }
   &__title {
     @include title();
