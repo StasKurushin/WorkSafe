@@ -62,7 +62,18 @@
       font-size: 22px;
     }
   }
+}
 
+@media (max-width: 480px) {
+  .benefit {
+    margin-bottom: 70px;
+    &__svg {
+      &-wrapper {
+        height: 125px;
+        width: 125px;
+      }
+    }
+  }
 }
 
 

@@ -135,9 +135,12 @@ const modalPopup = (function () {
     let navListItem;
     let popup;
     let popupSlideinContent;
-    //let popupContentStyle;
     let popupNavbar;
-
+    let popupNavbarListItem;
+    let hamburger;
+    let hamburgerClosed;
+    let popupNavList;
+    let hambOpenClose;
 
 
     function open(idx, target) {
@@ -156,8 +159,8 @@ const modalPopup = (function () {
         document.querySelector('#left').addEventListener('click', _prevItem);
         document.querySelector('#right').addEventListener('click', _nextItem);
         document.querySelector('.popup__close').addEventListener('click', _close);
-
         document.body.addEventListener('keydown', keyHandler);
+        document.querySelector('.hamburger__open-close').addEventListener('click', onClickHamburger);
         popUpTitle = document.querySelector('.popup__title');
         popUpIntro = document.querySelector('.popup__intro');
         navListItem = document.querySelectorAll('.popupnav-list__item');
@@ -186,6 +189,7 @@ const modalPopup = (function () {
         activeItem = idx;
     }
 
+
     function _close() {
         document.querySelector('#popup').remove();
         document.documentElement.style.overflow = '';
@@ -207,10 +211,18 @@ const modalPopup = (function () {
         }
     }
 
+    function onClickHamburger() {
+        /*popupNavbar = document.querySelector('.popupnav');
+        popupNavbar.classList.toggle('popupnav--closed');*/
+        hamburger = document.querySelector('.hamburger');
+        hamburger.classList.toggle('hamburger--opened')
+    }
+
     function popupAnimation() {
         popup = document.querySelector('.popup');
         popupSlideinContent = document.querySelector('.popup-content');
-        popupNavbar = document.querySelector('.popupnav');
+        hamburger = document.querySelector('.hamburger');
+        hamburgerClosed = document.querySelector('.hamburger--closed');
         window.requestAnimationFrame(function () {
             growPopup();
             popupContentAppear();
@@ -223,7 +235,7 @@ const modalPopup = (function () {
             height += 10;
             popup.style.height = height + 'vh';
             if (height < 100) {
-                let tId = setTimeout(tick, 1);
+                tId = setTimeout(tick, 1);
             } else {
                 popup.style.height = '100vh';
             }
@@ -233,7 +245,7 @@ const modalPopup = (function () {
     function popupContentAppear() {
         setTimeout (function() {
             popupSlideinContent.style.display = 'flex';
-            popupNavbar.style.display = 'block';
+            hamburger.style.display = 'block';
             document.querySelector('#left').style.display = "block";
             document.querySelector('#right').style.display = "block";
         }, 600);
@@ -246,31 +258,34 @@ const modalPopup = (function () {
         arr.forEach( el => m.push(`<li class="popupnav-list__item">${el.title}</li>`));
         const res = m.join('');
         return `<div class="popup" id="popup">
-                                <div class="popupnav">
-                                    <ul class="popupnav-list">
-                                        ${res}
-                                    </ul>
-                                </div>
-                                <div class="popup__arrow" id="left">
-                                    <i class="material-icons">chevron_left</i>
-                                </div>
-                                <!--<div class="popup-container">-->
-                                <div class="popup-content">
-                                    <h2 class="popup__title" id="title">
-                                      ${title}
-                                    </h2>
-                                    <div class="popup__intro" id="intro">
-                                        ${intro}
-                                    </div>
-                                </div>  
-                                <div class="popup__arrow" id="right">
-                                    <i class="material-icons">chevron_right</i>
-                                </div> 
-                                <div class="popup__close" id="close">
-                                        <i class="material-icons material-icons__close">clear</i>                            
-                                </div>
-                               <!-- </div>-->
-                         </div>`
+                    <div class="hamburger">
+                        <div class="hamburger__open-close">
+                            <i class="material-icons material-icons__close">clear</i> 
+                        </div>
+                        <div class="popupnav popupnav--closed" >
+                            <ul class="popupnav-list popupnav-list--closed">
+                                ${res}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="popup__arrow" id="left">
+                        <i class="material-icons">chevron_left</i>
+                    </div>
+                    <div class="popup-content">
+                        <h2 class="popup__title" id="title">
+                          ${title}
+                        </h2>
+                        <div class="popup__intro" id="intro">
+                            ${intro}
+                        </div>
+                    </div>  
+                    <div class="popup__arrow" id="right">
+                        <i class="material-icons">chevron_right</i>
+                    </div> 
+                    <div class="popup__close" id="close">
+                            <i class="material-icons material-icons__close">clear</i>                            
+                    </div>
+               </div>`
     }
     return {openModal: open,
             addContent: init}

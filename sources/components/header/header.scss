@@ -47,6 +47,9 @@ body {
     color: white;
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
+    @media (max-width: 800px) {
+      line-height: 83px;
+    }
   }
 }
 .navbar {
