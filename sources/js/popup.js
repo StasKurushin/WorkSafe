@@ -161,6 +161,12 @@ const modalPopup = (function () {
         document.querySelector('.popup__close').addEventListener('click', _close);
         document.body.addEventListener('keydown', keyHandler);
         document.querySelector('.hamburger__open-close').addEventListener('click', onClickHamburger);
+        document.querySelector('.hamburger').addEventListener('click', el => {
+           let t = el.target;
+           if (t.classList.contains('hamburger')) {
+               onClickHamburger()
+           }
+        });
         popUpTitle = document.querySelector('.popup__title');
         popUpIntro = document.querySelector('.popup__intro');
         navListItem = document.querySelectorAll('.popupnav-list__item');
@@ -212,8 +218,8 @@ const modalPopup = (function () {
     }
 
     function onClickHamburger() {
-        /*popupNavbar = document.querySelector('.popupnav');
-        popupNavbar.classList.toggle('popupnav--closed');*/
+        popupNavbar = document.querySelector('.popupnav');
+        popupNavbar.classList.toggle('popupnav--closed');
         hamburger = document.querySelector('.hamburger');
         hamburger.classList.toggle('hamburger--opened')
     }
@@ -245,7 +251,11 @@ const modalPopup = (function () {
     function popupContentAppear() {
         setTimeout (function() {
             popupSlideinContent.style.display = 'flex';
-            hamburger.style.display = 'block';
+            if (document.documentElement.clientWidth < 481) {
+                hamburger.style.display = 'flex'
+            } else {
+                hamburger.style.display = 'block';
+            }
             document.querySelector('#left').style.display = "block";
             document.querySelector('#right').style.display = "block";
         }, 600);
@@ -260,10 +270,10 @@ const modalPopup = (function () {
         return `<div class="popup" id="popup">
                     <div class="hamburger">
                         <div class="hamburger__open-close">
-                            <i class="material-icons material-icons__close">clear</i> 
+                            <i class="material-icons  material-icons__close">clear</i> 
                         </div>
                         <div class="popupnav popupnav--closed" >
-                            <ul class="popupnav-list popupnav-list--closed">
+                            <ul class="popupnav-list">
                                 ${res}
                             </ul>
                         </div>

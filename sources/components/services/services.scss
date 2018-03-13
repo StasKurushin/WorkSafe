@@ -170,8 +170,24 @@
   display: none;
   position: relative;
   top: -20%;
-  animation: slideinPopupNav 0.7s ease-in-out;
-  -moz-animation: slideinPopupNav 1.6s ease-in-out;
+  animation: slideinPopupNavFromTop 0.7s ease-in-out;
+  -moz-animation: slideinPopupNavFromTop 1.6s ease-in-out;
+  @keyframes slideinPopupNavFromTop {
+    from {
+      top: -100%;
+    }
+    to {
+      top: -20%;
+    }
+  }
+  @-moz-keyframes slideinPopupNavFromTop {
+    from {
+      top: -100%;
+    }
+    to {
+      top: -20%;
+    }
+  }
   &__open-close {
     display: none
   }
@@ -183,22 +199,6 @@
   border-radius: 9px;
   box-shadow: 14px 20px 28px rgba(0,0,0,0.4),
               -14px 20px 28px rgba(0,0,0,0.4);
-  @keyframes slideinPopupNav {
-    from {
-      top: -100%;
-    }
-    to {
-      top: -20%;
-    }
-  }
-  @-moz-keyframes slideinPopupNav {
-    from {
-      top: -100%;
-    }
-    to {
-      top: -20%;
-    }
-  }
   &-list {
     list-style: none;
     text-align: center;
@@ -275,8 +275,16 @@
     top: 20%;
     left: -335px;
     z-index: 1;
-    transition: left .3s;
-    animation: hambSlideInLeft 1s;
+    transition: .3s;
+    animation: hambSlideInFromLeft 1.5s;
+    @keyframes hambSlideInFromLeft {
+      from {
+        left: -380px
+      }
+      to {
+        left: -335px
+      }
+    }
     &--opened {
       left: 0;
     }
@@ -296,16 +304,12 @@
     }
   }
 }
-@keyframes hamdSlideInLeft {
-  100% {
-    left: -100px;
-  }
-}
+
 
 
 @media (max-width: 480px) {
   .popup-content {
-    height: 617px;
+    //height: 617px;
   }
   .popup__arrow {
     position: absolute;
@@ -324,15 +328,23 @@
     right: 0
   }
   .hamburger {
-    display: flex;
+    display: none;
     position: absolute;
     top: 0;
-    background: green;
+    left: 0;
     width: 100vw;
     height: 52px;
     align-items: center;
-    border-bottom-left-radius: 5%;
-    border-bottom-right-radius: 100%;
+    background: rgb(76, 144, 141);
+    animation: slideInNavbarFromTopXs 1s;
+    @keyframes slideInNavbarFromTopXs {
+      from {
+        top: -60px
+      }
+      to {
+        top: 0
+      }
+    }
     &__open-close {
       display: none;
     }
@@ -340,8 +352,7 @@
       content: "≡";
       color: #ffffff;
       font-size: 60px;
-      position: absolute;
-      display: block;
+      margin-left: 40px;
     }
     &:hover {
       cursor: pointer;
@@ -350,15 +361,27 @@
   .popupnav {
     padding: 0;
     margin: 0;
+    position: absolute;
+    top: 3.2rem;
+    max-height: 300px;
+    transition: max-height .3s;
+    z-index: 1;
+    border: none;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    &--closed {
+      overflow: hidden;
+      max-height: 0;
+    }
     &-list {
-      position: absolute;
+      /*position: absolute;
       max-height: 300px;
-      transition: max-height .3s;
+      transition: max-height .3s;*/
       //-webkit-margin-before: 37px;
       //-webkit-margin-after: 0;
      // -webkit-margin-start: -44px;
       //-webkit-margin-end: 0;
-      z-index: 1;
+
     }
     &-list--closed {
       overflow: hidden;

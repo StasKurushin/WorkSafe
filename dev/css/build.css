@@ -663,9 +663,21 @@ body {
   display: none;
   position: relative;
   top: -20%;
-  -webkit-animation: slideinPopupNav 0.7s ease-in-out;
-          animation: slideinPopupNav 0.7s ease-in-out;
-  -moz-animation: slideinPopupNav 1.6s ease-in-out; }
+  -webkit-animation: slideinPopupNavFromTop 0.7s ease-in-out;
+          animation: slideinPopupNavFromTop 0.7s ease-in-out;
+  -moz-animation: slideinPopupNavFromTop 1.6s ease-in-out; }
+
+@-webkit-keyframes slideinPopupNavFromTop {
+  from {
+    top: -100%; }
+  to {
+    top: -20%; } }
+
+@keyframes slideinPopupNavFromTop {
+  from {
+    top: -100%; }
+  to {
+    top: -20%; } }
   .hamburger__open-close {
     display: none; }
 
@@ -677,18 +689,6 @@ body {
           border-radius: 9px;
   -webkit-box-shadow: 14px 20px 28px rgba(0, 0, 0, 0.4), -14px 20px 28px rgba(0, 0, 0, 0.4);
           box-shadow: 14px 20px 28px rgba(0, 0, 0, 0.4), -14px 20px 28px rgba(0, 0, 0, 0.4); }
-
-@-webkit-keyframes slideinPopupNav {
-  from {
-    top: -100%; }
-  to {
-    top: -20%; } }
-
-@keyframes slideinPopupNav {
-  from {
-    top: -100%; }
-  to {
-    top: -20%; } }
   .popupnav-list {
     list-style: none;
     text-align: center;
@@ -754,11 +754,21 @@ body {
     top: 20%;
     left: -335px;
     z-index: 1;
-    -webkit-transition: left .3s;
-    -o-transition: left .3s;
-    transition: left .3s;
-    -webkit-animation: hambSlideInLeft 1s;
-            animation: hambSlideInLeft 1s; }
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    -webkit-animation: hambSlideInFromLeft 1.5s;
+            animation: hambSlideInFromLeft 1.5s; }
+  @-webkit-keyframes hambSlideInFromLeft {
+    from {
+      left: -380px; }
+    to {
+      left: -335px; } }
+  @keyframes hambSlideInFromLeft {
+    from {
+      left: -380px; }
+    to {
+      left: -335px; } }
     .hamburger--opened {
       left: 0; }
     .hamburger__open-close {
@@ -786,17 +796,7 @@ body {
       -webkit-box-shadow: -3px 8px 10px 3px rgba(0, 0, 0, 0.4);
               box-shadow: -3px 8px 10px 3px rgba(0, 0, 0, 0.4); } }
 
-@-webkit-keyframes hamdSlideInLeft {
-  100% {
-    left: -100px; } }
-
-@keyframes hamdSlideInLeft {
-  100% {
-    left: -100px; } }
-
 @media (max-width: 480px) {
-  .popup-content {
-    height: 617px; }
   .popup__arrow {
     position: absolute;
     color: black;
@@ -810,43 +810,60 @@ body {
   #right {
     right: 0; }
   .hamburger {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+    display: none;
     position: absolute;
     top: 0;
-    background: green;
+    left: 0;
     width: 100vw;
     height: 52px;
     -webkit-box-align: center;
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    -webkit-border-bottom-left-radius: 5%;
-            border-bottom-left-radius: 5%;
-    -webkit-border-bottom-right-radius: 100%;
-            border-bottom-right-radius: 100%; }
+    background: #4c908d;
+    -webkit-animation: slideInNavbarFromTopXs 1s;
+            animation: slideInNavbarFromTopXs 1s; }
+  @-webkit-keyframes slideInNavbarFromTopXs {
+    from {
+      top: -60px; }
+    to {
+      top: 0; } }
+  @keyframes slideInNavbarFromTopXs {
+    from {
+      top: -60px; }
+    to {
+      top: 0; } }
     .hamburger__open-close {
       display: none; }
     .hamburger:before {
       content: "≡";
       color: #ffffff;
       font-size: 60px;
-      position: absolute;
-      display: block; }
+      margin-left: 40px; }
     .hamburger:hover {
       cursor: pointer; }
   .popupnav {
     padding: 0;
-    margin: 0; }
+    margin: 0;
+    position: absolute;
+    top: 3.2rem;
+    max-height: 300px;
+    -webkit-transition: max-height .3s;
+    -o-transition: max-height .3s;
+    transition: max-height .3s;
+    z-index: 1;
+    border: none;
+    -webkit-border-top-right-radius: 0;
+            border-top-right-radius: 0;
+    -webkit-border-top-left-radius: 0;
+            border-top-left-radius: 0; }
+    .popupnav--closed {
+      overflow: hidden;
+      max-height: 0; }
     .popupnav-list {
-      position: absolute;
+      /*position: absolute;
       max-height: 300px;
-      -webkit-transition: max-height .3s;
-      -o-transition: max-height .3s;
-      transition: max-height .3s;
-      z-index: 1; }
+      transition: max-height .3s;*/ }
     .popupnav-list--closed {
       overflow: hidden;
       max-height: 0; } }
