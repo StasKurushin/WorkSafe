@@ -15,6 +15,12 @@
                 headerTitle.style.position = 'static';
             }, 700)
         } else {
+           //navbar.style.transform = 'scale(0)';
+           navbar.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
+           navbar.style.transform = 'scale(1)';
+           //headerTitle.style.transform = 'scale(0)';
+           headerTitle.style.transition = '.4s cubic-bezier(.84, 0, .47, 1)';
+           headerTitle.style.transform = 'scale(1)';
            navbar.style.position= 'static';
            headerTitle.style.position = 'static';
        }
@@ -178,7 +184,9 @@ const modalPopup = (function () {
     let hamburgerClosed;
     let popupNavList;
     let hambOpenClose;
-
+    let iconWrapperHamb;
+    let iconWrapperClose;
+    let iconWrapper;
 
     function open(idx, target) {
         document.documentElement.style.overflow = 'hidden';
@@ -198,6 +206,15 @@ const modalPopup = (function () {
         document.querySelector('.popup__close').addEventListener('click', _close);
         document.body.addEventListener('keydown', keyHandler);
         document.querySelector('.hamburger__open-close').addEventListener('click', onClickHamburger);
+        document.querySelector('.icon-wrapper__hamb').addEventListener('click', event => {
+            let target = event.currentTarget;
+            target.style.display='none';
+            target.offsetHeight;
+            target.style.display='block';
+            console.log(target)
+            //event.currentTarget.style.width = event.currentTarget.offsetWidth + 'px'
+        });
+
         document.querySelector('.hamburger').addEventListener('click', el => {
            let t = el.target;
            if (t.classList.contains('hamburger')) {
@@ -244,7 +261,7 @@ const modalPopup = (function () {
         popupContent = content;
     }
 
-    function keyHandler () {
+    function keyHandler (event) {
         if (event.key === 'ArrowLeft') {
             _prevItem()
         } else if (event.key === 'ArrowRight') {
@@ -258,13 +275,13 @@ const modalPopup = (function () {
         popupNavbar = document.querySelector('.popupnav');
         popupNavbar.classList.toggle('popupnav--closed');
         hamburger = document.querySelector('.hamburger');
-        hamburger.classList.toggle('hamburger--opened')
+        hamburger.classList.toggle('hamburger--opened');
     }
 
     function popupAnimation() {
         popup = document.querySelector('.popup');
         popupSlideinContent = document.querySelector('.popup-content');
-        hamburger = document.querySelector('.hamburger');
+        //hamburger = document.querySelector('.hamburger');
         hamburgerClosed = document.querySelector('.hamburger--closed');
         window.requestAnimationFrame(function () {
             growPopup();
@@ -288,13 +305,11 @@ const modalPopup = (function () {
     function popupContentAppear() {
         setTimeout (function() {
             popupSlideinContent.style.display = 'flex';
-            if (document.documentElement.clientWidth < 481) {
-                hamburger.style.display = 'flex'
-            } else {
-                hamburger.style.display = 'block';
+            //hamburger.style.display = 'block';
+            if (document.documentElement.clientWidth > 520) {
+                document.querySelector('#left').style.display = "block";
+                document.querySelector('#right').style.display = "block";
             }
-            document.querySelector('#left').style.display = "block";
-            document.querySelector('#right').style.display = "block";
         }, 600);
     }
 
@@ -307,7 +322,12 @@ const modalPopup = (function () {
         return `<div class="popup" id="popup">
                     <div class="hamburger">
                         <div class="hamburger__open-close">
-                            <i class="material-icons  material-icons__close">clear</i> 
+                            <div class="icon-wrapper icon-wrapper__close">
+                                <i class="material-icons  material-icons__close">clear</i>
+                            </div>
+                            <div class="icon-wrapper icon-wrapper__hamb">
+                                <i class="material-icons material-icons__hamb">dehaze</i>
+                            </div>
                         </div>
                         <div class="popupnav popupnav--closed" >
                             <ul class="popupnav-list">
@@ -340,8 +360,7 @@ const modalPopup = (function () {
 
 const target = document.querySelector('.services');
 const items = document.querySelectorAll('.service');
-const content = contentArr;
-modalPopup.addContent(content);
+modalPopup.addContent(contentArr);
 
 [].forEach.call(items, function (el, idx) {
     el.addEventListener('click', (event) => {
@@ -380,7 +399,12 @@ modalPopup.addContent(content);
 function animateBtn() {
     scrollBtn.style.display = 'flex';
     scrollBtn.style.opacity = '1';
-    scrollBtn.style.transform = 'scale(2)'
+    scrollBtn.style.transform = 'scale(2)';
+    if(document.documentElement.clientWidth < 520) {
+        scrollBtn.style.transform = 'scale(1.5)';
+    } else {
+        scrollBtn.style.transform = 'scale(2)';
+    }
 }
 
 //Animated appearance of Benefits container
@@ -399,29 +423,22 @@ function animateServicesContainer() {
     let scrollBtn = document.querySelector('.scroll-btn');
     let benefits = document.querySelector('.benefits');
     let servicesCont = document.querySelector('.services-container');
-    let navbarList = document.querySelector('.navbar-list');
 
     window.addEventListener('scroll', function (e) {
         lastScrollPos = window.scrollY;
         if (lastScrollPos > 500) {
-            window.requestAnimationFrame(function () {
-                animateBtn();
-            })
+            animateBtn();
         } else {
             scrollBtn.style.opacity = '0';
             scrollBtn.style.transform = 'scale(0.5)'
         }
         if (lastScrollPos > 400) {
-            window.requestAnimationFrame(function () {
-                animateBenefitsContainer();
-            })
+            animateBenefitsContainer();
         } else {
             benefits.style.opacity = '0';
         }
-        if (lastScrollPos > 1150) {
-            window.requestAnimationFrame(function () {
-                animateServicesContainer();
-            })
+        if (lastScrollPos > 1300) {
+            animateServicesContainer();
         } else {
             servicesCont.style.opacity = '0';
         }
@@ -881,3 +898,18 @@ if (typeof exports === 'object') {
     // global
     polyfill();
 }
+let popupTitle = document.querySelector('.popup__title');
+let hamburger = document.querySelector('.hamburger');
+let swipeNav = new Hammer(popupTitle);
+
+swipeNav.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+
+swipeNav.on('swipedown swipeup', event => {
+    let target = event.currentTarget;
+    if (target.classList.contains('popup__title')) {
+        if (event.type === 'swipedown') {
+            hamburger.style.display = block;
+            console.log('swipe')
+        }
+    }
+});

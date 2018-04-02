@@ -1,5 +1,5 @@
 @mixin container() {
-  padding: 135px 0;
+  padding: calcFluidFontSize(75,200,320,2560) 0;
   width: 1140px;
   max-width: 100%;
   margin: 0 auto;
@@ -10,9 +10,9 @@
   font-family: 'Alegreya Sans', sans-serif;
   font-weight: 400;
   color: #3a3a3a;
-  font-size: 50px;
+  font-size: calcFluidFontSize(42,60,320,2560);
   text-align: center;
-  margin-bottom: 125px;
+  margin-bottom: calcFluidFontSize(65,185,320,2560);
 }
 
 @mixin containerBigSreen {
@@ -22,6 +22,7 @@
   margin: 0 auto;
 }
 
+/*
 @mixin titleBigScreen() {
   font-family: 'Alegreya Sans', sans-serif;
   font-weight: 400;
@@ -29,4 +30,4 @@
   font-size: 60px;
   text-align: center;
   margin-bottom: 185px;
-}
+}*/

@@ -52,9 +52,6 @@
     &-container {
       @include containerBigSreen();
     }
-    &__title {
-      @include titleBigScreen()
-    }
   }
   .benefit {
     &__intro {

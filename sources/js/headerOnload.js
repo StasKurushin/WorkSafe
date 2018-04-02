@@ -15,6 +15,12 @@
                 headerTitle.style.position = 'static';
             }, 700)
         } else {
+           //navbar.style.transform = 'scale(0)';
+           navbar.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
+           navbar.style.transform = 'scale(1)';
+           //headerTitle.style.transform = 'scale(0)';
+           headerTitle.style.transition = '.4s cubic-bezier(.84, 0, .47, 1)';
+           headerTitle.style.transform = 'scale(1)';
            navbar.style.position= 'static';
            headerTitle.style.position = 'static';
        }

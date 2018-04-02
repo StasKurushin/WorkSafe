@@ -141,7 +141,9 @@ const modalPopup = (function () {
     let hamburgerClosed;
     let popupNavList;
     let hambOpenClose;
-
+    let iconWrapperHamb;
+    let iconWrapperClose;
+    let iconWrapper;
 
     function open(idx, target) {
         document.documentElement.style.overflow = 'hidden';
@@ -161,6 +163,15 @@ const modalPopup = (function () {
         document.querySelector('.popup__close').addEventListener('click', _close);
         document.body.addEventListener('keydown', keyHandler);
         document.querySelector('.hamburger__open-close').addEventListener('click', onClickHamburger);
+        document.querySelector('.icon-wrapper__hamb').addEventListener('click', event => {
+            let target = event.currentTarget;
+            target.style.display='none';
+            target.offsetHeight;
+            target.style.display='block';
+            console.log(target)
+            //event.currentTarget.style.width = event.currentTarget.offsetWidth + 'px'
+        });
+
         document.querySelector('.hamburger').addEventListener('click', el => {
            let t = el.target;
            if (t.classList.contains('hamburger')) {
@@ -207,7 +218,7 @@ const modalPopup = (function () {
         popupContent = content;
     }
 
-    function keyHandler () {
+    function keyHandler (event) {
         if (event.key === 'ArrowLeft') {
             _prevItem()
         } else if (event.key === 'ArrowRight') {
@@ -221,13 +232,13 @@ const modalPopup = (function () {
         popupNavbar = document.querySelector('.popupnav');
         popupNavbar.classList.toggle('popupnav--closed');
         hamburger = document.querySelector('.hamburger');
-        hamburger.classList.toggle('hamburger--opened')
+        hamburger.classList.toggle('hamburger--opened');
     }
 
     function popupAnimation() {
         popup = document.querySelector('.popup');
         popupSlideinContent = document.querySelector('.popup-content');
-        hamburger = document.querySelector('.hamburger');
+        //hamburger = document.querySelector('.hamburger');
         hamburgerClosed = document.querySelector('.hamburger--closed');
         window.requestAnimationFrame(function () {
             growPopup();
@@ -251,13 +262,11 @@ const modalPopup = (function () {
     function popupContentAppear() {
         setTimeout (function() {
             popupSlideinContent.style.display = 'flex';
-            if (document.documentElement.clientWidth < 481) {
-                hamburger.style.display = 'flex'
-            } else {
-                hamburger.style.display = 'block';
+            //hamburger.style.display = 'block';
+            if (document.documentElement.clientWidth > 520) {
+                document.querySelector('#left').style.display = "block";
+                document.querySelector('#right').style.display = "block";
             }
-            document.querySelector('#left').style.display = "block";
-            document.querySelector('#right').style.display = "block";
         }, 600);
     }
 
@@ -270,7 +279,12 @@ const modalPopup = (function () {
         return `<div class="popup" id="popup">
                     <div class="hamburger">
                         <div class="hamburger__open-close">
-                            <i class="material-icons  material-icons__close">clear</i> 
+                            <div class="icon-wrapper icon-wrapper__close">
+                                <i class="material-icons  material-icons__close">clear</i>
+                            </div>
+                            <div class="icon-wrapper icon-wrapper__hamb">
+                                <i class="material-icons material-icons__hamb">dehaze</i>
+                            </div>
                         </div>
                         <div class="popupnav popupnav--closed" >
                             <ul class="popupnav-list">
@@ -303,8 +317,7 @@ const modalPopup = (function () {
 
 const target = document.querySelector('.services');
 const items = document.querySelectorAll('.service');
-const content = contentArr;
-modalPopup.addContent(content);
+modalPopup.addContent(contentArr);
 
 [].forEach.call(items, function (el, idx) {
     el.addEventListener('click', (event) => {
