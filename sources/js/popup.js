@@ -126,7 +126,7 @@ const contentArr = [
 ];
 
 
-const modalPopup = (function () {
+const modalPopup = (function() {
     
     let popupContent;
     let activeItem;
@@ -168,7 +168,7 @@ const modalPopup = (function () {
             target.style.display='none';
             target.offsetHeight;
             target.style.display='block';
-            console.log(target)
+            console.log(target);
             //event.currentTarget.style.width = event.currentTarget.offsetWidth + 'px'
         });
 

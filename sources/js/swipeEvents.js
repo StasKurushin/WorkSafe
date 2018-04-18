@@ -1,4 +1,4 @@
-let popupTitle = document.querySelector('.popup__title');
+/*let popupTitle = document.querySelector('.popup__title');
 let hamburger = document.querySelector('.hamburger');
 let swipeNav = new Hammer(popupTitle);
 
@@ -12,4 +12,4 @@ swipeNav.on('swipedown swipeup', event => {
             console.log('swipe')
         }
     }
-});
+});*/
