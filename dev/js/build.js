@@ -19,30 +19,24 @@ const navbarListItem = document.querySelectorAll('.navbar-list__item');
     let headerTitle = document.querySelector('.header__title');
     let startTitle = document.querySelector('.start__title');
     let start = document.querySelector('.start');
+    let target = document.querySelector('.start-container');
     let tId;
+
     window.onload = function () {
-        shine();
-        setTimeout( function () {
-            clearTimeout(tId);
-            start.style.display = 'none';
+        if (window.scrollY < 50) {
+            startAnim();
+            headerAnim();
+        } else {
             if (document.documentElement.clientWidth > 767) {
-                navbar.style.left = '0%';
-                navbar.style.transition = '.7s cubic-bezier(.84, 0, .47, 1)';
-                headerTitle.style.right = '0%';
-                headerTitle.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
-                setTimeout(function () {
-                    navbar.style.position = 'static';
-                    headerTitle.style.position = 'static';
-                }, 700)
+                headerTitle.style.right = '0';
+                navbar.style.left = '0'
             } else {
-                navbar.style.transition = '.5s cubic-bezier(.84, 0, .47, 1)';
                 navbar.style.transform = 'scale(1)';
-                headerTitle.style.transition = '.4s cubic-bezier(.84, 0, .47, 1)';
                 headerTitle.style.transform = 'scale(1)';
                 navbar.style.position = 'static';
                 headerTitle.style.position = 'static';
             }
-        }, 4400);
+        }
     };
 
     function shine() {
@@ -52,28 +46,39 @@ const navbarListItem = document.querySelectorAll('.navbar-list__item');
             startTitle.style.opacity = op;
             if (op < 0.7) {
                 tId = setTimeout(tick, 100)
-            } else {
-                let blink = setInterval (function() {
-                    let op = 0;
-                    startTitle.style.opacity = op;
-                    let timer = setTimeout(function rise() {
-                        op += 0.2;
-                        startTitle.style.opacity = op;
-                        if (op < 0.9) {
-                            timer = setTimeout(rise, 1)
-                        } else {
-                            op = 0;
-                            startTitle.style.opacity = op;
-                        }
-                    })
-                }, 100);
-                setTimeout(function () {
-                    clearInterval(blink)
-                },700)
             }
-        },500);
+        });
+    }
+    function rotate() {
+        target.classList.add('start-container--rotate');
+    }
+    function startAnim() {
+        start.style.display = 'block';
+        shine();
+        setTimeout(rotate, 2500);
+
+    }
+    function headerAnim() {
+        setTimeout( function () {
+            start.style.display = 'none';
+            clearTimeout(tId);
+            if (document.documentElement.clientWidth > 767) {
+                navbar.classList.add('navbar-list--slide');
+                headerTitle.classList.add('header__title--slide');
+                setTimeout(function () {
+                    navbar.style.position = 'static';
+                    headerTitle.style.position = 'static';
+                }, 700)
+            } else {
+                navbar.style.transform = 'scale(1)';
+                headerTitle.style.transform = 'scale(1)';
+                navbar.classList.add('navbar-list--slide__min-screen');
+                headerTitle.classList.add('header__title--slide__min-screen');
+            }
+        }, 3000);
     }
 })();
+
 
 const contentArr = [
     {
@@ -88,7 +93,15 @@ const contentArr = [
                 <p>
                     Наша компания поможет организовать процесс проведения специальной оценки условий труда с соблюдением 
                     сроков, графиков и документарного обеспечения
-                </p>`
+                </p>
+                <div class="popup-callback">
+                    <div class="popup-callback__intro">
+                        Узнать цену и получить подробную консультацию
+                   </div>
+                   <button class="callback__btn">
+                       Заказать обратный звонок
+                   </button>
+               </div>`
     },
     {
         title: 'Знаки безопасности и сигнальная разметка',
@@ -98,7 +111,15 @@ const contentArr = [
                </p>
                 <p>
                     Мы поможем определить места и тип знаков под каждое предприятие, разработав проект и обеспечив поставку знаков
-               </p>`
+               </p>
+               <div class="popup-callback">
+                    <div class="popup-callback__intro">
+                        Узнать цену и получить подробную консультацию
+                   </div>
+                   <button class="callback__btn">
+                       Заказать обратный звонок
+                   </button>
+               </div>`
     },
     {
         title: 'Аутсорсинг охраны труда',
@@ -151,7 +172,15 @@ const contentArr = [
                             <li>
                                 представление интересов организации в надзорных органах и при взаимодействии с другими организациями
                             </li>
-                       </ul>`
+                       </ul>
+                       <div class="popup-callback">
+                            <div class="popup-callback__intro">
+                                Узнать цену и получить подробную консультацию
+                           </div>
+                           <button class="callback__btn">
+                               Заказать обратный звонок
+                           </button>
+                       </div>`
     },
     {
         title: 'Аудит по охране труда',
@@ -169,7 +198,15 @@ const contentArr = [
                     <li>аудит физических нарушений на предприятии</li>
                     
                     <li>составление отчета и рекомендаций по устранению нарушений</li>
-                </ul>`
+                </ul>
+                <div class="popup-callback">
+                    <div class="popup-callback__intro">
+                        Узнать цену и получить подробную консультацию
+                   </div>
+                   <button class="callback__btn">
+                       Заказать обратный звонок
+                   </button>
+               </div>`
     },
     {
         title: 'Разработка документов по охране труда',
@@ -188,7 +225,15 @@ const contentArr = [
                     <li>документы для прохождения медосмотров, психиатрических освидетельствований</li>
                     <li>И многое другое в зависимости от специфики предприятия</li>
                     <li>Данная услуга будет выполнена качественно и в срок опытными специалистами с инструкциями по работе с документами.</li>
-                </ul>`
+                </ul>
+                <div class="popup-callback">
+                    <div class="popup-callback__intro">
+                        Узнать цену и получить подробную консультацию
+                   </div>
+                   <button class="callback__btn">
+                       Заказать обратный звонок
+                   </button>
+               </div>`
     },
 
     {
@@ -198,7 +243,15 @@ const contentArr = [
                     «Об утверждении Межотраслевых правил по охране труда на автомобильном транспорте»
                     Работодатель обязан разработать транспортную схему при движении любых видов техники по территории организации
                     Специалисты нашей компании помогут разработать схемы движения под любое предприятие
-                </p>`
+                </p>
+                <div class="popup-callback">
+                    <div class="popup-callback__intro">
+                        Узнать цену и получить подробную консультацию
+                   </div>
+                   <button class="callback__btn">
+                       Заказать обратный звонок
+                   </button>
+               </div>`
     }
 ];
 
@@ -241,20 +294,24 @@ const modalPopup = (function() {
         document.body.addEventListener('keydown', keyHandler);
         document.querySelector('.hamburger__open-close').addEventListener('click', onClickHamburger);
         document.querySelector('.icon-wrapper__hamb').addEventListener('click', event => {
-            let target = event.currentTarget;
-            target.style.display='none';
-            target.offsetHeight;
-            target.style.display='block';
-            console.log(target);
-            //event.currentTarget.style.width = event.currentTarget.offsetWidth + 'px'
+            let t = event.currentTarget;
+            //t.style.zIndex = '';
+            t.style.transition = 'transform 1s';
+            t.style.transform = 'rotateY(180deg)'
+        });
+        document.querySelector('.icon-wrapper__close').addEventListener('click', event => {
+            let t = event.currentTarget;
+            t.style.backfaceVisibility = 'hidden';
+            t.style.transition = 'transform 1s';
+            t.style.transform = 'rotateY(180deg)'
         });
 
-        document.querySelector('.hamburger').addEventListener('click', el => {
+        /*document.querySelector('.hamburger').addEventListener('click', el => {
            let t = el.target;
            if (t.classList.contains('hamburger')) {
                onClickHamburger()
            }
-        });
+        });*/
         popUpTitle = document.querySelector('.popup__title');
         popUpIntro = document.querySelector('.popup__intro');
         navListItem = document.querySelectorAll('.popupnav-list__item');
@@ -307,7 +364,7 @@ const modalPopup = (function() {
 
     function onClickHamburger() {
         popupNavbar = document.querySelector('.popupnav');
-        popupNavbar.classList.toggle('popupnav--closed');
+        //popupNavbar.classList.toggle('popupnav--closed');
         hamburger = document.querySelector('.hamburger');
         hamburger.classList.toggle('hamburger--opened');
     }
@@ -315,7 +372,7 @@ const modalPopup = (function() {
     function popupAnimation() {
         popup = document.querySelector('.popup');
         popupSlideinContent = document.querySelector('.popup-content');
-        //hamburger = document.querySelector('.hamburger');
+        hamburger = document.querySelector('.hamburger');
         hamburgerClosed = document.querySelector('.hamburger--closed');
         window.requestAnimationFrame(function () {
             growPopup();
@@ -339,7 +396,7 @@ const modalPopup = (function() {
     function popupContentAppear() {
         setTimeout (function() {
             popupSlideinContent.style.display = 'flex';
-            //hamburger.style.display = 'block';
+            hamburger.style.display = 'block';
             if (document.documentElement.clientWidth > 520) {
                 document.querySelector('#left').style.display = "block";
                 document.querySelector('#right').style.display = "block";
@@ -379,6 +436,7 @@ const modalPopup = (function() {
                         <div class="popup__intro" id="intro">
                             ${intro}
                         </div>
+                        
                     </div>  
                     <div class="popup__arrow" id="right">
                         <i class="material-icons">chevron_right</i>
