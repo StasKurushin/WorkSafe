@@ -15,7 +15,7 @@ var gulp        = require('gulp'),
 
 
 gulp.task('sass',  function(){
-     return gulp.src('sources/components/**/*.scss')
+     return gulp.src('sources/**/*.scss')
         .pipe(plumber())
         .pipe(concat("build.scss"))
         .pipe(sass())
@@ -57,8 +57,8 @@ gulp.task('fonts', function() {
         .pipe(browserSync.reload({stream: true}))
 })
 
-gulp.task('watch', ['browser-sync', 'sass', 'htmlImport','buildJs','img'],  function() {
-    gulp.watch('sources/components/**/*.html', ['htmlImport']);
+gulp.task('watch', ['browser-sync', 'sass', 'buildJs','img'],  function() {
+    //gulp.watch('sources/components/**/*.html', ['htmlImport']);
     gulp.watch('sources/components/**/*.scss', ['sass']);
     gulp.watch('sources/components/**/*.html', browserSync.reload);
     gulp.watch('sources/js/**/*.js', ['buildJs']);
